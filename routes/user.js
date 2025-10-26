@@ -11,8 +11,8 @@ router.post("/user/signup", async (req, res) => {
     if (
       !req.body.username ||
       !req.body.email ||
-      req.body.password ||
-      !req.body.newsletter
+      !req.body.password
+      // !req.body.newsletter
     ) {
       return res.status(400).json({ message: "Missing parameters" });
     }
@@ -21,16 +21,16 @@ router.post("/user/signup", async (req, res) => {
       return res.status(400).json({ message: "email already used" });
     }
 
-    const salt = uid(8);
-    const token = uid2(32);
-    const hash = SHAD256(req.body.password + salt).toString(encBase64);
+    const salt = uid2(16);
+    const token = uid2(64);
+    const hash = SHA256(req.body.password + salt).toString(encBase64);
 
     const newUser = new User({
       email: req.body.email,
       account: {
         username: req.body.username,
       },
-      newsletter: true,
+      // newsletter: true,
       salt: salt,
       token: token,
       hash: hash,
