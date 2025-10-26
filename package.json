@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.2.3",
+    "mongoose": "^8.19.2",
+    "uid2": "^1.0.0"
+  }
+}
